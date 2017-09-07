@@ -1,0 +1,61 @@
+Project was build from spring-mvc-jpa-demo-archetype as a starting point.
+That's why I marked this fact that in github there are 2 commits
+    1st commit - the initial already available for everybody mvn archetype named "spring-mvc-jpa-demo-archetype" (maybe there are some better starting point, but I don't want waste too much time here)
+    2nd commit - contains my real changes, but please note that this is a draft, so I am aware it can be better.
+
+FYI: To run the application, I was using:
+1. JRE/JDK 8, but 7 also should be OK
+2. Tomcat 9
+3. Mvn 3.3.3
+FYI: I developed in IntelliJ
+FYI: I didn't test on postres, only in memory (this is default configuration), as it much faster, I didn't test it but for switch to postrgess needs to be updated db.properties (comment top part and uncomment PostreSql Options)
+FYI: For testing I used soapUI 5.3.0
+
+How to run:
+1. Build the program with, example "mvn clean install".
+2. Deploy to tomcat server (I tested on Tomcat 9).
+3. Endpoints and example tests could be overlooked in doc/soapUI/REST-School-Project-soapui-project.xml
+    Person TestCase might be interesting as a starting point.
+
+    Below example CRUD (create/read/update/delete)
+    a. create:
+        method: POST
+        URL: http://localhost:8080/school/rest/person/
+        request body:
+            {
+               "firstName": "FirstName1",
+               "lastName": "LastName1"
+            }
+    b. read:
+        method: GET
+        URL: http://localhost:8080/school/rest/person/1
+        response body:
+            {
+               "id": 1,
+               "firstName": "FirstName1",
+               "secondName": null,
+               "lastName": "LastName1"
+            }
+    c. update
+        method: PUT
+        URL: http://localhost:8080/school/rest/person/1
+        request body:
+            {
+               "firstName": "Jan",
+               "secondName": "Piotr",
+               "lastName": "Kowalski"
+            }
+    d. delete
+        method: DELETE
+        URL: http://localhost:8080/school/rest/person/1
+    e. Example Exception handling (example try to delete after delete):
+        method: DELETE
+        URL: http://localhost:8080/school/rest/person/1
+        Response:
+            Status: 404
+            Header 'errormessage': 'Person with id 1 not found'
+            Response body:
+                {
+                   "code": "Not Found",
+                   "message": "Person with id 1 not found"
+                }

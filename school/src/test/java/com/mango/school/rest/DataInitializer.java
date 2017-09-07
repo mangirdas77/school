@@ -1,14 +1,13 @@
-package com.mango.school.controller;
+package com.mango.school.rest;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.mango.school.model.PersonEntity;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-
-import com.mango.school.model.Person;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
+import java.util.ArrayList;
+import java.util.List;
 
 @Component
 @Scope("prototype")
@@ -31,7 +30,7 @@ public class DataInitializer {
 	}
 
 	public void addPerson(String firstName, String lastName) {
-		Person p = new Person();
+		PersonEntity p = new PersonEntity();
 		p.setFirstName(firstName);
 		p.setLastName(lastName);
 		entityManager.persist(p);
